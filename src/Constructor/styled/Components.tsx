@@ -5,6 +5,7 @@ export const Title = styled.h1`
     font-family: Helvetica;
     margin: 0;
     color: #262626;
+    padding-left: 20px;
     `;
 
 export const Subheader = styled.h2`
@@ -13,4 +14,5 @@ export const Subheader = styled.h2`
     margin-top: 0;
     margin-bottom: 20px;
     color: #262626;
+    padding-left: 20px;
     `;

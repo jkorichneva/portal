@@ -14,6 +14,8 @@ const StyledList = styled.div`
     border: 1px solid #999;
     padding: 10px 0 0;
     box-sizing: border-box;
+    box-shadow: 0 12px 32px 0 rgb(0 0 0 / 8%);
+    border-radius: 4px;
 `;
 
 export const PagesList: FC<TPagesList> = observer(({ pages }) => {
@@ -21,9 +23,9 @@ export const PagesList: FC<TPagesList> = observer(({ pages }) => {
         <StyledList>
             <Subheader>Pages</Subheader>
             {pages.pages.map((page) => (
-                <PageItem page={page} key={page.id} />
+                <PageItem page={page} key={page.id} removePage={() => pages.removePage(page)}/>
             ))}
-            <Button>
+            <Button onClick={() => pages.createPage('tata')}>
                 + Create page
             </Button>
         </StyledList>

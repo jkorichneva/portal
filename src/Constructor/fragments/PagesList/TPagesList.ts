@@ -5,4 +5,5 @@ export type TPagesList = {
 };
 export type TPageItem = {
     page: IPage;
+    removePage: () => void;
 }

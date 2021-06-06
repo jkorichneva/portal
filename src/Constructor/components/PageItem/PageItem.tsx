@@ -27,7 +27,7 @@ const StyledPageItem = styled.div`
     }
 `;
 
-export const PageItem: FC<TPageItem> = observer(({page}) => {
+export const PageItem: FC<TPageItem> = observer(({page, removePage}) => {
     const [showEditInput, setShowEditInput] = useState(false);
 
     return (
@@ -37,6 +37,7 @@ export const PageItem: FC<TPageItem> = observer(({page}) => {
             {showEditInput && (
                 <>
                     <input type="text" value={page.name ?? undefined} onChange={(event) => {
+                        console.log(page);
                         page.setName(event.target.value);
                     }}/>
                     <Button onClick={() => setShowEditInput(false)}>Save</Button>
@@ -49,6 +50,9 @@ export const PageItem: FC<TPageItem> = observer(({page}) => {
             )}
             <Button className="publish" onClick={() => page.toggle()}>
                 Publish
+            </Button>
+            <Button className="delete" onClick={() => removePage()}>
+                ❌
             </Button>
         </StyledPageItem>
     )
