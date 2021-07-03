@@ -41,7 +41,7 @@ export class Page implements IPage {
     id: string|null = null;
     published: boolean = false;
 
-    constructor(name: string, id?: string) {
+    constructor(name: string, id?: string, published?: boolean) {
         makeAutoObservable(this, {
             name: observable,
             id: observable,
@@ -51,15 +51,16 @@ export class Page implements IPage {
         })
         this.id = id ?? nanoid();
         this.name = name;
-        this.published = false;
+        this.published = !!published;
     }
 
-    toggle() {
+    async toggle() {
         this.published = !this.published;
-        modifyDB('pages', this);
+        await modifyDB('pages', this);
     }
 
-    setName(name: string) {
+   async setName(name: string) {
         this.name = name;
+        await modifyDB('pages', this);
     }
 }

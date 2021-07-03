@@ -28,7 +28,7 @@ export default function Constructor() {
                 pages = [new Page('Main'), new Page('Additional')];
                 await addDataToDB('pages', pages);
             } else {
-                pages = pages.map(page => new Page(page.name, page.id));
+                pages = pages.map(page => new Page(page.name, page.id, page.published));
             }
             const defaultPagesStore = new PagesStore(pages);
             // @ts-ignore

@@ -18,6 +18,11 @@ export async function getDataFromIndexedDB(databaseName: string, version: number
     return await books.getAll();
 }
 
+/**
+ * add multiple entries to db
+ * @param databaseName
+ * @param data
+ */
 export async function addDataToDB(databaseName: string, data: Array<IPage>) {
     let db = await DBPromise(databaseName);
 
@@ -34,14 +39,23 @@ export async function addDataToDB(databaseName: string, data: Array<IPage>) {
     }
 }
 
+/**
+ * delete entry from database
+ * @param databaseName
+ * @param id
+ */
 export async function removeFromDB(databaseName: string, id: string|null) {
-    console.log(id);
     if (id) {
         let db = await DBPromise(databaseName);
         await db.delete(databaseName, id);
     }
 }
 
+/**
+ * add one entry to DB
+ * @param databaseName
+ * @param data
+ */
 export async function addToDB(databaseName: string, data: Page) {
     let db = await DBPromise(databaseName);
 
@@ -56,19 +70,21 @@ export async function addToDB(databaseName: string, data: Page) {
     }
 }
 
+/**
+ * update DB entry
+ * @param databaseName
+ * @param data
+ */
 export async function modifyDB(databaseName: string, data: Page) {
-    console.log(data);
-    /* let db = await DBPromise(databaseName);
+    let db = await DBPromise(databaseName);
 
     let transaction = db.transaction(databaseName, 'readwrite');
     let store = transaction.objectStore(databaseName);
     try {
-        // @ts-ignore
-        await store.delete(data.id);
-        await store.add(data);
+        await store.put(data);
         // @ts-ignore
         await transaction.complete;
     } catch(err) {
         console.log('error', err.message);
-    }*/
+    }
 }

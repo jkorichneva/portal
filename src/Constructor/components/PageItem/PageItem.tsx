@@ -29,6 +29,7 @@ const StyledPageItem = styled.div`
 
 export const PageItem: FC<TPageItem> = observer(({page, removePage}) => {
     const [showEditInput, setShowEditInput] = useState(false);
+    console.log(page.published);
 
     return (
         <StyledPageItem>
@@ -48,8 +49,8 @@ export const PageItem: FC<TPageItem> = observer(({page, removePage}) => {
                     ✎
                 </Button>
             )}
-            <Button className="publish" onClick={() => page.toggle()}>
-                Publish
+            <Button className="publish" onClick={() => page.toggle()} data-title="Опубликовать">
+                📖
             </Button>
             <Button className="delete" onClick={() => removePage()}>
                 ❌
